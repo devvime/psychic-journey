@@ -1,2 +1,2 @@
-# JsAPI
+# Psychic Journey
 
