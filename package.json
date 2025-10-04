@@ -24,7 +24,7 @@
     "#root/*": "./src/*",
     "#core/*": "./src/core/*",
     "#app/*": "./src/app/*",
-    "#shared/*": "./src/shared/*"
+    "#shared/*": "./src/app/shared/*"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

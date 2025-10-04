@@ -14,7 +14,7 @@ exports.up = function (knex) {
       .onUpdate("CASCADE")
       .onDelete("CASCADE");
     table.string("token").notNullable();
-    table.boolean("is_valid");
+    table.boolean("is_valid").notNullable();
     table.timestamps(true, true);
   });
 };
