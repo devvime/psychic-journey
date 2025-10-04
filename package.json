@@ -5,7 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src/main.js",
-    "start": "node src/main.js"
+    "start": "node src/main.js",
+    "migrate:make": "knex migrate:make",
+    "migrate:dev": "knex migrate:latest --env development",
+    "migrate:dev:rollback": "knex migrate:rollback --env development",
+    "migrate:stg": "knex migrate:latest --env staging",
+    "migrate:stg:rollback": "knex migrate:rollback --env staging",
+    "migrate:prod": "knex migrate:latest --env production",
+    "migrate:prod:rollback": "knex migrate:rollback --env production",
+    "seed:make": "knex seed:make",
+    "seed:dev:run": "knex seed:run --env development --esm"
   },
   "keywords": [],
   "author": "",
