@@ -4,6 +4,7 @@ services:
   app:
     build: .
     container_name: psychic_journey
+    restart: always
     ports:
       - "3000:3000"
     env_file:
@@ -12,3 +13,14 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     command: npm start
+  
+  mysql:
+    image: mysql:8.0
+    container_name: psychic_journey_mysql
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
