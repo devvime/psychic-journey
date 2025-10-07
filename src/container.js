@@ -1,5 +1,5 @@
-import UserController from "#app/domains/user/user.controller.js"
-import UserService from "#app/domains/user/user.service.js"
+import UserController from "#root/app/controller/user.controller.js";
+import UserService from "#root/app/service/user.service.js";
 
 export default {
   UserController,

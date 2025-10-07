@@ -82,7 +82,7 @@ Example of a simple controller using custom decorators:
 
 ```js
 import container from "#root/container.js";
-import { Get, Post } from "#core/router.js"; // Supports: Get, Post, Put, Patch, Delete
+import { Get, Post } from "#root/main.js"; // Supports: Get, Post, Put, Patch, Delete
 
 class UserController {
   constructor() {
@@ -124,33 +124,62 @@ export default {
 
 ---
 
-## 🧭 Project Structure
+## 📄 Example: Pagination
 
+You can use the `paginate()` method (available in all models extending `BaseModel`) to fetch paginated data with dynamic filtering, total count, and pages array.
+
+### Example usage:
+
+```js
+// UserService.js
+import UserModel from "#app/domains/user/user.model.js";
+
+class UserService {
+  async listPaginated(page = 1, perPage = 10) {
+    return await UserModel.paginate({
+      page,
+      perPage,
+      where: {
+        name: { like: "%john%" },
+        age: { between: [18, 40] },
+        role: { in: ["admin", "editor"] },
+        active: true,
+      },
+      orderBy: { column: "created_at", direction: "desc" },
+    });
+  }
+}
+
+export default new UserService();
 ```
-src/
-├── app/
-│   └── domains/
-│       └── user/
-│           ├── user.controller.js
-│           └── user.service.js
-├── core/
-├── database/
-│   ├── migrations/
-│   └── seeds/
-├── middleware/
-├── container.js
-└── main.js
+
+### Example response:
+
+```json
+{
+  "data": [
+    { "id": 21, "name": "John Doe", "role": "admin" },
+    { "id": 22, "name": "Johnny Blaze", "role": "editor" }
+  ],
+  "total": 42,
+  "totalPages": 9,
+  "currentPage": 2,
+  "pages": [5, 6, 7, 8, 9]
+}
 ```
+
+> The `paginate()` method automatically calculates the total number of items, total pages, and returns the last 5 page numbers for navigation.
 
 ---
 
 ## 💡 Notes & Conventions
 
 * Follow the naming convention:
-  `domainName.controller.js` | `domainName.service.js`
+  `domainName.controller.js` | `domainName.service.js` | `domainName.model.js`
 * Each controller automatically registers its routes when instantiated.
 * Keep business logic inside services, not controllers.
 * Use environment-specific scripts (`migrate:dev`, `migrate:stg`, `migrate:prod`) for clean database management.
+* Use the `paginate()` method in services to standardize list endpoints.
 
 ---
 

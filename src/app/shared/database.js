@@ -1,6 +1,6 @@
 import knex from "knex";
 
-const connection = knex({
+const database = knex({
   client: process.env.DEV_DATABASE_CLIENT,
   connection: {
     host: process.env.DEV_DATABASE_HOST,
@@ -11,4 +11,4 @@ const connection = knex({
   },
 });
 
-export default connection;
+export default database;
