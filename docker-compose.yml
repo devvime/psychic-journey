@@ -6,7 +6,7 @@ services:
     container_name: psychic_journey
     restart: always
     ports:
-      - "3000:3000"
+      - "3001:3000"
     env_file:
       - .env
     volumes:
@@ -18,8 +18,11 @@ services:
     image: mysql:8.0
     container_name: psychic_journey_mysql
     restart: always
-    env_file:
-      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
     ports:
       - "3307:3306"
     volumes:
