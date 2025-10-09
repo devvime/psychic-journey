@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Activate your account</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f3f4f6;
+        margin: 0;
+        padding: 0;
+      }
+
+      .email-container {
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: #ffffff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+
+      .email-header {
+        background: linear-gradient(90deg, #2563eb, #1d4ed8);
+        color: #ffffff;
+        text-align: center;
+        padding: 30px 20px;
+      }
+
+      .email-header h1 {
+        margin: 0;
+        font-size: 22px;
+      }
+
+      .email-body {
+        padding: 30px 40px;
+        color: #374151;
+      }
+
+      .email-body h2 {
+        color: #111827;
+        font-size: 20px;
+      }
+
+      .email-body p {
+        line-height: 1.6;
+        margin: 15px 0;
+      }
+
+      .activation-button {
+        display: inline-block;
+        background-color: #2563eb;
+        color: #ffffff;
+        padding: 14px 26px;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 600;
+        margin-top: 25px;
+        transition: background-color 0.2s;
+      }
+
+      .activation-button:hover {
+        background-color: #1d4ed8;
+      }
+
+      .email-footer {
+        background-color: #f9fafb;
+        color: #6b7280;
+        font-size: 13px;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .email-footer a {
+        color: #2563eb;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="email-container">
+      <div class="email-header">
+        <h1>{{appName}}</h1>
+      </div>
+
+      <div class="email-body">
+        <h2>Hello, {{username}}!</h2>
+        <p>
+          Thank you for registering at <strong>{{appName}}</strong> 🎉
+          Before we begin, we need to confirm your email.
+        </p>
+
+        <p>
+          Click the button below to activate your account:
+        </p>
+
+        <p style="text-align: center;">
+          <a href="{{activationLink}}" class="activation-button">
+            Activate Account
+          </a>
+        </p>
+
+        <p>
+          If you haven't created an account, you can safely ignore this email.
+        </p>
+      </div>
+
+      <div class="email-footer">
+        © {{year}} {{appName}}. All rights reserved.<br />
+        Need help? <a href="{{supportLink}}">Contact us</a>.
+      </div>
+    </div>
+  </body>
+</html>

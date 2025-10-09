@@ -1,7 +1,7 @@
 import container from "#root/container.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { sendEmail } from "#shared/mailer.js";
+import { sendActivationAccountEmail } from "./sendActivationAccountEmail.js";
 
 class Login {
 
@@ -15,11 +15,7 @@ class Login {
       }
 
       if (!user.active) {
-        await sendEmail(user.email, 'Account activation', 'Test...');
-        return {
-          error: true,
-          message: 'User is not active, access your email and activate your account.'
-        }
+        return await sendActivationAccountEmail(user);
       }
 
       const result = await bcrypt.compare(password, user.password);
@@ -28,7 +24,7 @@ class Login {
         throw new Error();
       }
 
-      const token = jwt.sign(
+      const accessToken = jwt.sign(
         {
           id: user.id,
           name: user.name,
@@ -38,7 +34,8 @@ class Login {
         process.env.SECRET_PASS
       );
 
-      return { token };
+      return { accessToken };
+
     } catch (error) {
       throw new Error(error);
     }
