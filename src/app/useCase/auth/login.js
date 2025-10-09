@@ -1,6 +1,7 @@
 import container from "#root/container.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { sendEmail } from "#shared/mailer.js";
 
 class Login {
 
@@ -11,6 +12,14 @@ class Login {
 
       if (user === undefined) {
         throw new Error();
+      }
+
+      if (!user.active) {
+        await sendEmail(user.email, 'Account activation', 'Test...');
+        return {
+          error: true,
+          message: 'User is not active, access your email and activate your account.'
+        }
       }
 
       const result = await bcrypt.compare(password, user.password);
