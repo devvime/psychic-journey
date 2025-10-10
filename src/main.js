@@ -1,7 +1,9 @@
 import "dotenv/config";
+import "#root/server/error/json.error.js";
 import express, { Router } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import { errorMiddleware } from "#root/server/middleware/error.middleware.js";
 
 const app = express();
 const appRouter = Router();
@@ -10,6 +12,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(appRouter);
+app.use(errorMiddleware);
 
 export const Get = (path, func) => appRouter.get(path, func);
 export const Post = (path, func) => appRouter.post(path, func);

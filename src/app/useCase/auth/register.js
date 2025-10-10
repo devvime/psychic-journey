@@ -8,7 +8,7 @@ class Register {
       const user = await container.repository.UserRepository.findByEmail(data.email);
 
       if (user !== undefined) {
-        throw new Error('User is already registered.')
+        throw new Error('User is already registered.');
       }
 
       data.password = await bcrypt.hash(data.password, 10);

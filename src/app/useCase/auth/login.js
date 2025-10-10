@@ -1,7 +1,6 @@
 import container from "#root/container.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { sendActivationAccountEmail } from "./sendActivationAccountEmail.js";
 
 class Login {
 
@@ -11,17 +10,17 @@ class Login {
       const user = await container.repository.UserRepository.findByEmail(email);
 
       if (user === undefined) {
-        throw new Error();
+        throw new JsonError();
       }
 
       if (!user.active) {
-        return await sendActivationAccountEmail(user);
+        return await container.useCase.Auth.SendActivationAccountEmail(user);
       }
 
       const result = await bcrypt.compare(password, user.password);
 
       if (!result) {
-        throw new Error();
+        throw new JsonError();
       }
 
       const accessToken = jwt.sign(
@@ -37,7 +36,7 @@ class Login {
       return { accessToken };
 
     } catch (error) {
-      throw new Error(error);
+      throw new JsonError('Invalid credentials');
     }
   }
 

@@ -16,11 +16,11 @@ export default {
     },
     migrations: {
       tableName: "knex_migrations",
-      directory: "./src/database/migrations",
+      directory: "./src/server/database/migrations",
       extension: 'cjs'
     },
     seeds: {
-      directory: "./src/database/seeds",
+      directory: "./src/server/database/seeds",
     },
   },
   staging: {
@@ -38,11 +38,11 @@ export default {
     },
     migrations: {
       tableName: "knex_migrations",
-      directory: "./src/database/migrations",
+      directory: "./src/server/database/migrations",
       extension: 'cjs'
     },
     seeds: {
-      directory: "./src/database/seeds",
+      directory: "./src/server/database/seeds",
     },
   },
   production: {
@@ -60,11 +60,11 @@ export default {
     },
     migrations: {
       tableName: "knex_migrations",
-      directory: "./src/database/migrations",
+      directory: "./src/server/database/migrations",
       extension: 'cjs'
     },
     seeds: {
-      directory: "./src/database/seeds",
+      directory: "./src/server/database/seeds",
       extension: 'cjs'
     },
   },
