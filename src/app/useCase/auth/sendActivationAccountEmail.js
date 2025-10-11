@@ -10,7 +10,7 @@ export default async function SendActivationAccountEmail(user) {
     );
     const activationLink = `${process.env.APP_URL}/auth/activate-account/${activateAccountToken}`;
 
-    const template = container.GetTemplate('account-activation', {
+    const template = container.GetTemplate('account-activation-email', {
       username: user.name,
       activationLink,
       appName: process.env.SMTP_APP_NAME,

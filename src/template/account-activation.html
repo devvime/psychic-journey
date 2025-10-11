@@ -78,7 +78,6 @@
       }
     </style>
   </head>
-
   <body>
     <div class="email-container">
       <div class="email-header">
@@ -97,7 +96,8 @@
         </p>
 
         <p style="text-align: center;">
-          <a href="{{activationLink}}" class="activation-button">
+          <a href="{{activationLink}}" target="_blank"
+            class="activation-button">
             Activate Account
           </a>
         </p>
@@ -109,7 +109,7 @@
 
       <div class="email-footer">
         © {{year}} {{appName}}. All rights reserved.<br />
-        Need help? <a href="{{supportLink}}">Contact us</a>.
+        Need help? <a href="{{supportLink}}" target="_blank">Contact us</a>.
       </div>
     </div>
   </body>
